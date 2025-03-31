@@ -11,6 +11,7 @@ import Login from "../pages/auth/Login";
 import Register from "../pages/auth/Register";
 import Reports from "@/pages/admin/Reports";
 import Settings from "@/pages/admin/Settings";
+import ProductPage from "@/pages/client/ProductPage";
 
 const AppRouter = () => {
   return (
@@ -90,6 +91,19 @@ const AppRouter = () => {
               </ProtectedRoute>
             }
           />
+
+          <Route
+            path="/client/products"
+            element={
+              <ProtectedRoute>
+                <ClientLayout>
+                  <ProductPage />
+                </ClientLayout>
+              </ProtectedRoute>
+            }
+          />
+
+
 
           {/* Redirect Root Path */}
           <Route path="/" element={<Navigate to="/login" />} />
