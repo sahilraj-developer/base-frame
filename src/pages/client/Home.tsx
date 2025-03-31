@@ -7,7 +7,8 @@ import {
   CardHeader,
   CardTitle,
 } from "../../components/ui/card"
-import { ArrowRight, Star } from "lucide-react"
+import { ArrowRight, Star } from "lucide-react";
+import { Link } from 'react-router-dom'; 
 
 const Home = () => {
   return <div className="min-h-screen bg-white flex flex-col items-center justify-center p-4">
@@ -17,9 +18,11 @@ const Home = () => {
       <p className="text-2xl text-muted-foreground mb-8">
         Experience the future of simplicity and efficiency.
       </p>
+      <Link to="/client/products">
       <Button variant="default" size="lg">
         Get Started <ArrowRight className="ml-2 h-4 w-4" />
       </Button>
+      </Link>
     </section>
 
     {/* Image Gallery */}
