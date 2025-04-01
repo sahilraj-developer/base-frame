@@ -1,3 +1,5 @@
+
+import Footer from "@/components/client/Footer";
 import Navbar from "../components/client/Navbar";
 
 const ClientLayout = ({ children }:any) => {
@@ -5,6 +7,8 @@ const ClientLayout = ({ children }:any) => {
     <div>
       <Navbar />
       <main className="p-4">{children}</main>
+
+      <Footer/>
     </div>
   );
 };

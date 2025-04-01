@@ -12,6 +12,7 @@ import Register from "../pages/auth/Register";
 import Reports from "@/pages/admin/Reports";
 import Settings from "@/pages/admin/Settings";
 import ProductPage from "@/pages/client/ProductPage";
+import CartPage from "@/pages/client/CartPage";
 
 const AppRouter = () => {
   return (
@@ -98,6 +99,17 @@ const AppRouter = () => {
               <ProtectedRoute>
                 <ClientLayout>
                   <ProductPage />
+                </ClientLayout>
+              </ProtectedRoute>
+            }
+          />
+
+<Route
+            path="/client/cart"
+            element={
+              <ProtectedRoute>
+                <ClientLayout>
+                  <CartPage />
                 </ClientLayout>
               </ProtectedRoute>
             }

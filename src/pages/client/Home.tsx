@@ -1,3 +1,4 @@
+import { Carousel } from "@/components/ui/carousel";
 import { Button } from "../../components/ui/button"
 import {
   Card,
@@ -7,10 +8,40 @@ import {
   CardHeader,
   CardTitle,
 } from "../../components/ui/card"
-import { ArrowRight, Star } from "lucide-react";
+import { ArrowLeft, ArrowRight, Star } from "lucide-react";
 import { Link } from 'react-router-dom'; 
+import { useRef, useState } from "react";
 
 const Home = () => {
+
+  const products = Array(5).fill({
+    image:
+      "https://www.searchenginejournal.com/wp-content/uploads/2021/09/find-whats-trending-6151d8276c49d-sej.png",
+  });
+
+
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const carouselRef = useRef(null);
+
+  // Handle Next Button Click
+  const nextSlide = () => {
+    if (currentIndex < products.length - 1) {
+      setCurrentIndex(currentIndex + 1);
+    } else {
+      setCurrentIndex(0); // Loop back to the first item
+    }
+  };
+
+  // Handle Previous Button Click
+  const prevSlide = () => {
+    if (currentIndex > 0) {
+      setCurrentIndex(currentIndex - 1);
+    } else {
+      setCurrentIndex(products.length - 1); // Loop back to the last item
+    }
+  };
+
   return <div className="min-h-screen bg-white flex flex-col items-center justify-center p-4">
     {/* Hero Section */}
     <section className="text-center mb-16">
@@ -25,13 +56,84 @@ const Home = () => {
       </Link>
     </section>
 
+
+  {/* Featured Products Section */}
+  <section className="w-full max-w-6xl py-10">
+        <h2 className="text-4xl font-semibold text-center text-gray-900 mb-8">
+          Featured Products
+        </h2>
+
+        <div className="relative flex items-center">
+          {/* Left Arrow */}
+          <div className="absolute top-1/2 left-0 transform -translate-y-1/2 z-10">
+            <button
+              onClick={prevSlide}
+              className="bg-white rounded-full p-2 shadow-md hover:bg-gray-200 transition"
+            >
+              <ArrowLeft className="w-6 h-6 text-gray-900" />
+            </button>
+          </div>
+
+          {/* Carousel Container */}
+          <div className="overflow-hidden w-full">
+            <div
+              className="flex transition-all duration-500 ease-in-out"
+              style={{ transform: `translateX(-${currentIndex * 300}px)` }}
+              ref={carouselRef}
+            >
+              {products.map((product, index) => (
+                <div
+                  key={index}
+                  className="min-w-[300px] mx-2 h-64 shadow-xl rounded-xl overflow-hidden group transform transition-all hover:scale-105 duration-300 ease-in-out"
+                >
+                  <img
+                    src={product.image}
+                    alt="Product"
+                    className="w-full h-full object-cover rounded-xl group-hover:opacity-80 transition-all"
+                  />
+                  {/* Product Info Overlay */}
+                  <div className="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black via-transparent to-transparent opacity-70 group-hover:opacity-100 transition-all">
+                    <h3 className="text-lg text-white font-semibold">{product.name}</h3>
+                    <p className="text-sm text-white">{product.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Right Arrow */}
+          <div className="absolute top-1/2 right-0 transform -translate-y-1/2 z-10">
+            <button
+              onClick={nextSlide}
+              className="bg-white rounded-full p-2 shadow-md hover:bg-gray-200 transition"
+            >
+              <ArrowRight className="w-6 h-6 text-gray-900" />
+            </button>
+          </div>
+        </div>
+      </section>
+
+
+
+
+
+
     {/* Image Gallery */}
     <section className="max-w-6xl w-full mb-16">
       <h2 className="text-3xl font-bold mb-8 text-center">Our Products</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div className="bg-gray-200 border-2 border-dashed rounded-xl w-full h-64"></div>
-        <div className="bg-gray-200 border-2 border-dashed rounded-xl w-full h-64"></div>
-        <div className="bg-gray-200 border-2 border-dashed rounded-xl w-full h-64"></div>
+        <div className="bg-gray-200 border-2 border-dashed rounded-xl w-full h-64">
+          <img src="https://www.searchenginejournal.com/wp-content/uploads/2021/09/find-whats-trending-6151d8276c49d-sej.png"  alt="Product Image" 
+  className="w-full h-full object-cover rounded-xl" />
+        </div>
+        <div className="bg-gray-200 border-2 border-dashed rounded-xl w-full h-64">
+        <img src="https://www.searchenginejournal.com/wp-content/uploads/2021/09/find-whats-trending-6151d8276c49d-sej.png"  alt="Product Image" 
+  className="w-full h-full object-cover rounded-xl" />
+        </div>
+        <div className="bg-gray-200 border-2 border-dashed rounded-xl w-full h-64">
+        <img src="https://www.searchenginejournal.com/wp-content/uploads/2021/09/find-whats-trending-6151d8276c49d-sej.png"  alt="Product Image" 
+  className="w-full h-full object-cover rounded-xl" />
+        </div>
       </div>
     </section>
 
@@ -86,18 +188,12 @@ const Home = () => {
       <h2 className="text-3xl font-bold mb-8 text-center text-gray-800">Why Choose Us?</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="flex items-center justify-center bg-gray-100 border-2 border-gray-300 rounded-xl w-full h-64 shadow-lg">
-          <img
-            src="https://cdn.creazilla.com/cliparts/77966/best-quality-stamp-clipart-lg.png"
-            alt="Best Quality Stamp"
-            className="max-h-48 object-contain"
-          />
+          <img src="https://www.searchenginejournal.com/wp-content/uploads/2021/09/find-whats-trending-6151d8276c49d-sej.png"  alt="Product Image" 
+  className="w-full h-full object-cover rounded-xl" />
         </div>
         <div className="flex items-center justify-center bg-gray-100 border-2 border-gray-300 rounded-xl w-full h-64 shadow-lg">
-          <img
-            src="https://assets.aboutamazon.com/9c/7b/5e02715f4a97b4c27100614cafc2/hero3.jpg"
-            alt="Amazon Service"
-            className="max-h-48 object-contain"
-          />
+          <img src="https://www.searchenginejournal.com/wp-content/uploads/2021/09/find-whats-trending-6151d8276c49d-sej.png"  alt="Product Image" 
+  className="w-full h-full object-cover rounded-xl" />
         </div>
       </div>
     </section>
