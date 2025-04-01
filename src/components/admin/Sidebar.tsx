@@ -47,6 +47,7 @@ const Sidebar = () => {
             { name: "Users", path: "/admin/users" },
             { name: "Reports", path: "/admin/reports" },
             { name: "Settings", path: "/admin/settings" },
+            { name: "CMS", path: "/admin/cms" },
           ].map((item) => (
             <Link
               key={item.path}

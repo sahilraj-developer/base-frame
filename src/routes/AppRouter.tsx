@@ -13,6 +13,7 @@ import Reports from "@/pages/admin/Reports";
 import Settings from "@/pages/admin/Settings";
 import ProductPage from "@/pages/client/ProductPage";
 import CartPage from "@/pages/client/CartPage";
+import CMS from "@/pages/admin/CMS";
 
 const AppRouter = () => {
   return (
@@ -65,6 +66,19 @@ const AppRouter = () => {
               // <ProtectedRoute>
                 <AdminLayout>
                   <Settings />
+                </AdminLayout>
+              // </ProtectedRoute>
+            }
+          />
+
+
+
+<Route
+            path="/admin/cms"
+            element={
+              // <ProtectedRoute>
+                <AdminLayout>
+                  <CMS />
                 </AdminLayout>
               // </ProtectedRoute>
             }
